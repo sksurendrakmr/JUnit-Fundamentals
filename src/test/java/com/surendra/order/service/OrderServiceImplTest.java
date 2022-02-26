@@ -12,8 +12,7 @@ import java.sql.SQLException;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class OrderServiceImplTest {
     @Mock
@@ -60,18 +59,35 @@ public class OrderServiceImplTest {
         when(dao.create(order)).thenThrow(SQLException.class);
         //assert the result and verifying
         ordService.placeOrder(order);
+        /**
+         * Verification mode allow us to verify in a different way.
+         * We can tell how many times a method should be invoked by.
+         * ByDefault it is 1.
+         */
+        verify(dao,times(1)).create(order); //method is called how many times
+        verify(dao,atLeast(1)).create(order); //method is called at least specified number of times
+
 
     }
 
     @Test
     public void cancelOrderShouldCancelAOrder() throws SQLException, BOException {
+        /**
+         * So far while stubbing out our method calls using 'when' method or when we verify the methods
+         * on the mocked out  object, we have been passing the exact object type or primitive time.
+         *
+         * Instead of this, mockito gives us a matcher API which makes our job a lot easier.
+         *
+         * Thus, it is a convenient way to use the matchers and to make sure that the values that we
+         * are passing in is of exact type.
+         */
         Order order = new Order();
-        when(dao.read(123)).thenReturn(order);
-        when(dao.update(order)).thenReturn(Integer.valueOf(1));
-        boolean result = ordService.cancelOrder(123);
+        when(dao.read(anyInt())).thenReturn(order);
+        when(dao.update(any(Order.class))).thenReturn(Integer.valueOf(1));
+        boolean result = ordService.cancelOrder(anyInt());
         assertTrue(result);
-        verify(dao).update(order);
-        verify(dao).read(123);
+        verify(dao).update(any(Order.class));
+        verify(dao).read(anyInt());
     }
 
     @Test
