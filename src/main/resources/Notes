@@ -140,4 +140,32 @@ artifacts are saved into the maven repositories). By default, we have open sourc
 But we can have local enterprise level repository where we can maintain all open source stuff or only
 what our organization needs.
 
+Parameterized Junit test
+- Introduced in JUnit 4.
+- Allow us to pass different types of data set and assert for different result within one
+  single test method.
+
+Steps to write a Parameterized test
+1. Identify the Input Data and results
+2. Create Fields in the test class (for inputs and the result.)
+3. Create a constructor (which take input, output and the results)
+4. Create a static method (that will feed the data i.e. all the combinations of data will
+   be given by this static method and it will marked with JUnit API called @Parameters)
+5. Create or Update the Test method (When we write our test method, we will not hardcode the values inside
+   the test method. We will be using the value from the field which will be changing. So the static method will
+   be providing different data which we will be writing inside the static method and our test method will be receiving
+   all the data one at a time and asserting against different results)
+6. Mark the Test with @RunWith(Parameterized.class) annotation because we need special Junit runner called
+   Parameterized.class.
+
+ Flow
+ When we run the test, JUnit immediately know that it should use the parameterized class to run the test.
+ This parameterized class knows to invoke a static method which is marked as a @Parameters annotation.
+ This is the first thing it does and it gets the data set.
+
+ Then it uses the data set to create an instance of our class (call the constructor).
+
+ Then when it executes the test() method automatically and the field values will be substituted.
+
+ Thus, we can execute one single test multiple times with different data sets.
 
