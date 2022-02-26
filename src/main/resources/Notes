@@ -106,4 +106,38 @@ If needed, we can also use realMethods using Mock.
    when(myList.size()).thenCallRealMethod();
 
 
+Maven and JUnit Quick Start
+Maven is a build automation tool or a Project management tool.
+It is responsible for compile the source code, run tests and then it will automatically
+create a war/jar and it can even deploy that into the server.
+
+Maven is very light weight.
+
+It is uses a plug-in based architecture and when we run certain command
+then it will download the require plugins.
+E.g.
+When we compile source code, it will download compiler plugin
+When we running the test cases, it called surefire and
+
+There are several other plugin that we can configure inside maven on the fly.
+
+In maven, the configuration file is called pom.xml (pom stands for project object model).
+In this configuration file, first we configure our project coordinates like
+project name, group for the project and version number of our project.
+
+dependencies
+One of the main advantage of maven are it can easily pull all
+the dependencies that our project needs that is third-party libraries or
+open source libraries can be pulled from the maven repositories.
+
+Thus, once we declare the dependencies in maven's pom.xml, maven automatically
+pull them and use them both to compile our classes as well as it will package those
+dependencies in war/jar file.
+
+Repositories
+The maven repositories is where all the projects artifacts (once our project are compiled and jar those
+artifacts are saved into the maven repositories). By default, we have open source repositories in internet.
+But we can have local enterprise level repository where we can maintain all open source stuff or only
+what our organization needs.
+
 
