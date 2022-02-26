@@ -1,0 +1,33 @@
+Mocking
+To mimic or to imitate.
+- Testing in Isolation.
+- The idea is test our code without testing its dependencies. Each unit
+  should be tested on its own and when they all are integrated, they will
+  work as expected.
+
+  E.g. When Class A depends on Class B and we need to unit test Class A
+       then we mock Class B and in return all its methods get mocked.
+
+Mocking involves three steps :-
+- Stubbing
+- Setting Expectations
+- Verifying
+
+Mockito is one one of the mocking framework that provides all three.
+
+With Mockito, for stubbing and setting expectations either
+we use annotations (@Mock) or there are static methods which we can use which
+will stub out the dependent object.
+Then we use When, thenThrow, thenReturn etc. to set the expectations or to
+stub out all the methods on the dependent classes.
+Finally, we can verify if the mocked out methods are being called by using
+verify, matchers etc.
+
+Summary
+Mocking is where we test a unit in isolation that is unit testing.
+Mocking compliments unit testing by allowing to mock out all dependent
+classes and methods that are used.
+
+
+
+
