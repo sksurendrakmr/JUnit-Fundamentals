@@ -98,5 +98,28 @@ public class OrderServiceImplTest {
         ordService.cancelOrder(123);
     }
 
+    @Test
+    public void deleteOrderShouldDeleteAOrder() throws SQLException, BOException {
+        when(dao.delete(123)).thenReturn(Integer.valueOf(1));
+        boolean result = ordService.deleteOrder(123);
+        assertTrue(result);
+        verify(dao).delete(123);
+    }
+    @Test
+    public void deleteOrderShouldNotDeleteAOrder() throws SQLException, BOException {
+        when(dao.delete(123)).thenReturn(0);
+        boolean result = ordService.deleteOrder(123);
+        assertFalse(result);
+        verify(dao).delete(123);
+    }
+
+    @Test(expected = BOException.class)
+    public void deleteOrderShouldThrowAnException() throws SQLException, BOException {
+        when(dao.delete(123)).thenThrow(SQLException.class);
+        ordService.deleteOrder(123);
+    }
+
+
+
 
 }

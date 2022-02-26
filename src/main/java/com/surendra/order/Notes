@@ -29,5 +29,22 @@ Mocking compliments unit testing by allowing to mock out all dependent
 classes and methods that are used.
 
 
+Code Coverage
+Important metric to the developer, architect and even the management.
+
+Code Coverage or Test Coverage is the number of lines of our source code that is tested when our
+unit test are runs against the source code.
+Its include:-
+- Conditional Statements
+- Loops
+- Number of parameters that we passed into a method.
+- Type of parameters that we pass into a method etc.
+
+Measure the code coverage with Tools.
+These tools runs unit tests against our source code and will give us the percentage
+of code coverage and will also show us which lines of source code are tested, which lines are
+not tested and which need more testing.
+
+
 
 
