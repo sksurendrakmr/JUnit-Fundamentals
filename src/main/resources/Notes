@@ -1,0 +1,109 @@
+Mocking
+To mimic or to imitate.
+- Testing in Isolation.
+- The idea is test our code without testing its dependencies. Each unit
+  should be tested on its own and when they all are integrated, they will
+  work as expected.
+
+  E.g. When Class A depends on Class B and we need to unit test Class A
+       then we mock Class B and in return all its methods get mocked.
+
+Mocking involves three steps :-
+- Stubbing
+- Setting Expectations
+- Verifying
+
+Mockito is one one of the mocking framework that provides all three.
+
+With Mockito, for stubbing and setting expectations either
+we use annotations (@Mock) or there are static methods which we can use which
+will stub out the dependent object.
+Then we use When, thenThrow, thenReturn etc. to set the expectations or to
+stub out all the methods on the dependent classes.
+Finally, we can verify if the mocked out methods are being called by using
+verify, matchers etc.
+
+Summary
+Mocking is where we test a unit in isolation that is unit testing.
+Mocking compliments unit testing by allowing to mock out all dependent
+classes and methods that are used.
+
+
+Code Coverage
+Important metric to the developer, architect and even the management.
+
+Code Coverage or Test Coverage is the number of lines of our source code that is tested when our
+unit test are runs against the source code.
+Its include:-
+- Conditional Statements
+- Loops
+- Number of parameters that we passed into a method.
+- Type of parameters that we pass into a method etc.
+
+Measure the code coverage with Tools.
+These tools runs unit tests against our source code and will give us the percentage
+of code coverage and will also show us which lines of source code are tested, which lines are
+not tested and which need more testing.
+
+
+Best Practices and Pattern
+
+The F.I.R.S.T Principle
+Fast, Independent, Repeatable, Self-Validating, Timely
+Fast -> Test execution should be fast
+Independent -> One test should not depend on another test
+Repeatable -> repeat and run the test across environments.
+Self-Validating -> should yield boolean i.e it should either be true(success) or false(Failed)
+Timely -> Should write the test on time or before writing actual code (TDD)
+
+Test Doubles
+Common patterns across unit testing frameworks.
+Test Doubles allow us to mock out the actual objects.
+
+Five Test Doubles Pattern are :-
+- Dummy
+- Stubs
+- Mocks
+- Fake
+- Spies
+
+Dummy
+These are the objects that are passed as parameters but are not really required for testing
+a particular scenario.
+Mockito provides us with Matchers API to pass dummy objects (any, anyString etc).
+Thus, when we using a dummy object, we don't care about the exact object.
+
+Stubs
+These provides fixed answers or return values and will do only what we asked to do.
+So, we can create a stubs using when class and by using then return method in mockito.
+
+Mocks
+Little more than stubs. It can throw exceptions as well as it allow is to verify
+if certain other methods are called when we testing a method.
+E.g
+thenThrow
+verify()
+
+Fake
+These are some shortcut like in-memory databases that are rarely used in unit testing
+
+Spies
+They are stubs that can spy or record any side effects when we are testing a particular method.
+
+
+Spy vs Mock
+
+Spy is going to use the real object unless we stub out something, all the methods on
+real object will be called by Mockito when we use a spy.
+
+Whereas when we mock then it's mockito's own version of object and nothing happens unless
+we stub out a particular call.
+
+So a better way of handling spies or doing partial mocking in mockito is not to use spy.
+Instead, use mockito's Mock annotation.
+
+If needed, we can also use realMethods using Mock.
+   when(myList.size()).thenCallRealMethod();
+
+
+

@@ -34,7 +34,7 @@ public class OrderServiceImplTest {
     public void placeOrder_Should_Create_An_Order() throws SQLException, BOException {
         //Mocking out and setting the expectation using when class
         Order order = new Order();
-        when(dao.create(order)).thenReturn(Integer.valueOf(1));
+        when(dao.create(any(Order.class))).thenReturn(Integer.valueOf(1));
         //assert the result and verifying
         boolean result = ordService.placeOrder(order);
         assertTrue(result);
@@ -134,8 +134,5 @@ public class OrderServiceImplTest {
         when(dao.delete(123)).thenThrow(SQLException.class);
         ordService.deleteOrder(123);
     }
-
-
-
 
 }
